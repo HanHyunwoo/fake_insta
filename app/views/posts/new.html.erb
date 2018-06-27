@@ -1,7 +1,20 @@
 <h1>글 써</h1>
+
+<%= render 'form' %>
+
 <form action="/posts" method="post">
   <input type="text" name="title" /> <br />
   <textarea name="content"></textarea> <br />
   <input type="hidden" name="authenticity_token" value="<%=form_authenticity_token%>">
   <input type="submit" />
 </form>
+
+<%= form_tag('/posts/#{@post.id}',method: 'put') do %>
+  <%= text_field_tag(:title, @post.title) %>
+  <%= text_area_tag(:content, @post.content) %>
+  <%= submit_tag "전송~" %>
+<% end %>
+
+<!-- params = { title: "제목", content: "내용" }
+params = { post: { title: "제목", content: "내용" }    }
+params[:post][:title] -->

@@ -1,10 +1,19 @@
+<%= link_to '글 쓰기!!', new_post_path %>
+
 <h1>글 봐!!</h1>
 <%= @post.id %>번째 글
 <%= @post.title %>
 <%= @post.content %>
 
-<a href="/posts/<%= @post.id %>/edit">수정하기</a>
-<a href="/posts/<%= @post.id %>" data-method="delete" data-confirm="삭제할래?">삭제하기</a>
+<%= link_to '수정할거야', edit_post_path(@post)  %>
+<!-- <a href="/posts/<%= @post.id %>/edit">수정하기</a> -->
+
+<%= link_to '삭제할거야',
+                        @post,
+                        method: :delete,
+                        data: {confirm: '너 지울거야?'} %>
+
+<!-- <a href="/posts/<%= @post.id %>" data-method="delete" data-confirm="삭제할래?">삭제하기</a> -->
 <hr />
 
 <form action="/posts/<%= @post.id%>/comments" method="post">
