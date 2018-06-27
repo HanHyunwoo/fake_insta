@@ -1,11 +1,12 @@
 class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update, :destroy]
-
   #로그인해야 글쓰기가 됨
   before_action :authenticate_user!, except: :index
+  load_and_authorize_resource
 
   def index
-    @posts = Post.all.page(1).per(5)
+    #@posts = Post.all.page(1).per(5)
+    @posts = Post.order(created_at: :desc).page(params[:page]).per(3)
     respond_to do |format|
       format.html
       format.json{ render json: @posts  }
@@ -40,14 +41,26 @@ class PostsController < ApplicationController
 
   def show
     @comments = @post.comments
+    #authorize! :show, @post
   end
 
   def edit
+    # if current_user.id == @post.user.id
+    # else
+    #   redirect_to '/'
+    # end
   end
 
   def update
-    @post.update(post_params)
-    redirect_to "/posts/#{@post.id}"
+    respond_to do |format|
+      if @post.update(post_params)
+        format.html { redirect_to @post, notice: "글 수정 완료"}
+      else
+        format.html { render :edit }
+        format.json { render json: @post.errors}
+      end
+    end
+    #authorize! :update, @post
   end
 
   def destroy

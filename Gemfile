@@ -4,6 +4,7 @@ gem 'kaminari'
 gem 'simple_form'
 gem 'faker', :git => 'https://github.com/stympy/faker.git', :branch => 'master'
 gem 'pry-rails'
+gem 'cancancan', '~> 2.0'
 
 gem 'devise'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'

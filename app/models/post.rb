@@ -1,6 +1,6 @@
 class Post < ActiveRecord::Base
   has_many :comments
-  has_many :users
+  belongs_to :user
 
   #검증(model validation)
   validates :title, presence: {message: "제목을 입력해주세요."}

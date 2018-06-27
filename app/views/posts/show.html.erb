@@ -5,13 +5,22 @@
 <%= @post.title %>
 <%= @post.content %>
 
-<%= link_to '수정할거야', edit_post_path(@post)  %>
-<!-- <a href="/posts/<%= @post.id %>/edit">수정하기</a> -->
+<%# if current_user.id == @post.user.id %>
+<% if can? :edit, @post %>
+    <%= link_to '수정할거야', edit_post_path(@post)  %>
+<% end %>
 
-<%= link_to '삭제할거야',
-                        @post,
-                        method: :delete,
-                        data: {confirm: '너 지울거야?'} %>
+    <!-- <a href="/posts/<%= @post.id %>/edit">수정하기</a> -->
+
+<% if can? :destroy, @post %>
+    <%= link_to '삭제할거야',
+                            @post,
+                            method: :delete,
+                            data: {confirm: '너 지울거야?'} %>
+<% end %>
+<%# end %>
+
+
 
 <!-- <a href="/posts/<%= @post.id %>" data-method="delete" data-confirm="삭제할래?">삭제하기</a> -->
 <hr />
