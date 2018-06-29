@@ -8,7 +8,7 @@ class PostsController < ApplicationController
     #@posts = Post.all.page(1).per(5)
     @posts = Post.order(created_at: :desc).page(params[:page]).per(3)
     respond_to do |format|
-      format.html
+      format.html {render 'index'}  #' index' 생략 가능
       format.json{ render json: @posts  }
     end
   end

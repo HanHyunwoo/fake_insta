@@ -20,19 +20,102 @@
 <% end %>
 <%# end %>
 
-
-
 <!-- <a href="/posts/<%= @post.id %>" data-method="delete" data-confirm="삭제할래?">삭제하기</a> -->
 <hr />
 
-<form action="/posts/<%= @post.id%>/comments" method="post">
+<form action="/posts/<%= @post.id%>/comments" method="post" data-remote=true>
   <input type="text" name="content" /><br />
   <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
   <input type="submit" />
 </form>
 <hr />
 
-<% @comments.each do |comment| %>
-  <%= comment.content %>
-  <hr />
-<% end %>
+<div id="comments">
+  <% @comments.each do |comment| %>
+    <p>
+      <%= comment.content %>
+      <%= link_to '댓글 삭제하기', destroy_comment_path(comment.id), remote: true, method: :delete, class:"delete_comment" %>
+    </p>
+    <hr />
+  <% end %>
+</div>
+
+<script>
+  $('form').on('ajax:success',function(){
+    $('input[name="content"]').val('');
+  });
+</script>
+
+<!--
+<script>
+  $('input[type="submit"]').on('click',function(e){
+    e.preventDefault();
+    alert('start');
+
+    $.ajax({
+        url: $('form').attr('action'),
+        type: "POST",
+        data: {content: $('input[name="content"]').val(),
+                authenticity_token: $('[name="csrf-token"]').attr('content')},
+        dataType: 'script',
+        success: function(){
+          alert('success');
+          $('input[name="content"]').val('');
+        },
+        error: function(){
+          alert('fail');
+        }
+    });
+
+  });
+
+  $('.delete_comment').on('click',function(e){
+    e.preventDefault();
+    alert("start delete");
+
+    $.ajax({
+        url: this.href,  // <a> </a>
+        type: "DELETE",
+        data: {content: $('input[name="content"]').val(),
+                authenticity_token: $('[name="csrf-token"]').attr('content')},
+        dataType: 'script',
+        success: function(){
+          alert('delete success');
+          $('input[name="content"]').val('');
+        },
+        error: function(){
+          alert('delete fail');
+        }
+    });
+
+
+  });
+
+
+</script>
+-->
+
+<!-- <script>
+  $('input[type="submit"]').on('click',function(e){
+    var response = confirm("정말 제출하실 건가요?");
+    if (!response){   //response == false 랑 같음, 이 코드가 실행되려면 response==false이어야 함.
+      //e.preventDefault();  // submit 되는 걸 막아준다. ( 기본 작동을 막아줌)
+      return false;  //동작을 실행하지 말고, 끝내라. 위에꺼랑 같음
+    }else{
+      //e.stopImmediatePropagation(); 동일할 element에 있는 다른 이벤트를 발생 x, (stopPropagation 이런것도 있음 참고해)
+    }
+  });
+
+  function checkContentLen(e){
+    var content = $('input[name="content"]').val();
+    if (content.length <10){
+      alert('10글자 이상 작성해주세요.');
+      return false;
+    }else{
+      alert('참 잘했어요!');
+    }
+  }
+
+  $('input[type="submit"]').on("click",checkContentLen);
+
+</script> -->

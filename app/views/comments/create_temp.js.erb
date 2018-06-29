@@ -1,0 +1,3 @@
+
+$("div#comments").append("<p><%= j(@comment.content) %><%= escape_javascript(link_to '댓글 삭제하기2', destroy_comment_path(@comment.id), method: :delete, remote: true, class: 'delete_comment') %></p><hr/>");
+//j = escape_javascript
