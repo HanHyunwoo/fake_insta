@@ -90,7 +90,7 @@ $ rake db:migrate
 7. View 파일 수정하기
 
 ```
-$ rails generate devise:views users
+$ rails generate devise:views users     #app/views/users로 생성됨, users를 생략하면
 ```
 
 8. config 수정
@@ -107,6 +107,7 @@ $ rails generate devise:views users
    1. migration 파일에 원하는 column추가
 
    2. `app/views/devise/registrations/new.html.erb` input 추가
+       (`app/views/users/registrations/new.html.erb` input 추가)
 
    3. `app/controllers/application_controller.rb`
 

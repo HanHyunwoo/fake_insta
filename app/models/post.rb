@@ -1,6 +1,9 @@
 class Post < ActiveRecord::Base
   has_many :comments
   belongs_to :user
+  has_many :likes
+  #has_many :users, through :likes #likes라는 테이블을 통해서 많은 users들을 가지고 있다
+  has_many :liked_users, through: :likes, source: :user #likes라는 테이블을 통해서 많은 좋아요를 한 유저들을 가지고 있다.
 
   #검증(model validation)
   validates :title, presence: {message: "제목을 입력해주세요."}
