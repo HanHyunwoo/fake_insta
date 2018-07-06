@@ -9,7 +9,7 @@
 require 'csv'
 CSV.foreach(Rails.root.join('db','seed2.csv'), {headers: true, encoding: "iso-8859-1:utf-8"}) do |row|
   Post.create! row.to_hash
-end
+endㅇ
 
 # require 'faker'
 #

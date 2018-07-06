@@ -4,8 +4,10 @@ Rails.application.routes.draw do
   resources :posts
   post '/posts/:post_id/comments' => 'comments#create'
   delete '/comments/:comment_id' => 'comments#destroy', as: 'destroy_comment'
-  get '/posts/:post_id/like' => 'likes#create'
-  get '/posts/:post_id/dislike' => 'likes#destroy'
+  #get '/posts/:post_id/like' => 'likes#create'
+  put '/posts/:post_id/like' => 'likes#create'
+  #get '/posts/:post_id/dislike' => 'likes#destroy'
+  delete '/posts/:post_id/like' => 'likes#destroy'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
