@@ -1,5 +1,7 @@
 source 'https://rubygems.org'
 
+gem 'aws-sdk'
+
 # 환경변수 관리
 gem 'figaro'
 
@@ -10,7 +12,10 @@ gem 'cancancan', '~> 2.0'
 # 게시판
 gem 'kaminari'
 gem 'simple_form'
-
+gem 'tinymce-rails'
+gem 'tinymce-rails-langs'
+gem 'tinymce-rails-imageupload', '~> 4.0.0.beta'
+#gem 'tinymce-rails-imageupload', github: 'PerfectlyNormal/tinymce-rails-imageupload'   바로 위에 꺼랑 같음
 
 # 게시판 파일 업로드
 gem 'carrierwave', '~> 1.0'

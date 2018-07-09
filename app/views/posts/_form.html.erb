@@ -8,8 +8,20 @@
 <%= simple_form_for @post, html: {multipart: true} do |f| %>
   <%= f.error_notification %>  <!-- 에러 메시지 -->
   <%= f.input :title %>
-  <%= f.input :content %>
+  <%= f.input :content, class: "tinymce", rows: 40, cols: 120 %>
+  <%= tinymce %>
   <!-- <input type="file" name="img" /> -->
   <%= f.input :img %>
   <%= f.button :submit, class: "btn-primary" %>
 <% end %>
+
+
+
+<!-- tinymce.yml 파일이랑 같은거임 -->
+<!-- <script type="text/javascript">
+  tinyMCE.init({
+    selector: 'textarea.editor'
+    plugins: ['table', 'image', 'link']
+    toolbar: styleselect | bold italic | undo redo | table
+  });
+</script> -->

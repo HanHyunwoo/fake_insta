@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'tinymce_assets/create'
+
   devise_for :users
   root 'posts#index'
   resources :posts
@@ -8,6 +10,7 @@ Rails.application.routes.draw do
   put '/posts/:post_id/like' => 'likes#create'
   #get '/posts/:post_id/dislike' => 'likes#destroy'
   delete '/posts/:post_id/like' => 'likes#destroy'
+  post '/tinymce_assets' => 'tinymce_assets#create'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

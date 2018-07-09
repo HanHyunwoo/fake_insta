@@ -618,4 +618,7 @@ Welcome to [1mUbuntu 16.04.4 LTS[0m!
 
 Ubuntu 16.04.4 LTS ubuntu-xenial ttyS0
 
-ubuntu-xenial login: 
+ubuntu-xenial login: [20930.227926] Out of memory: Kill process 8797 (ruby) score 639 or sacrifice child
+[20930.268986] Killed process 8797 (ruby) total-vm:1296208kB, anon-rss:648304kB, file-rss:0kB
+[20930.309933] Out of memory: Kill process 9686 (server.rb:285) score 639 or sacrifice child
+[20930.361102] Killed process 8826 (ruby-timer-thr) total-vm:1296208kB, anon-rss:648304kB, file-rss:768kB

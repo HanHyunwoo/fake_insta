@@ -29,13 +29,13 @@ class ImgUploader < CarrierWave::Uploader::Base
   # end
 
   # Create different versions of your uploaded files:
-   version :thumb_fit do
-     process resize_to_fit: [250, 250]
+  version :thumb_fit do
+    process resize_to_fit: [250, 250]
    end
    # 1000 * 800 -> 250*200 (비율조정)
 
    version :thumb_fill do
-     process resize_to_fit: [250, 250]
+     process resize_to_fill: [250, 250]
    end
    # 1000 * 800 -> 250 * 250 ()잘라내기)
 
