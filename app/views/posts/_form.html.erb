@@ -5,9 +5,11 @@
   <%# f.submit %>
 <%# end %> -->
 
-<%= simple_form_for @post do |f| %>
+<%= simple_form_for @post, html: {multipart: true} do |f| %>
   <%= f.error_notification %>  <!-- 에러 메시지 -->
   <%= f.input :title %>
   <%= f.input :content %>
+  <!-- <input type="file" name="img" /> -->
+  <%= f.input :img %>
   <%= f.button :submit, class: "btn-primary" %>
 <% end %>
