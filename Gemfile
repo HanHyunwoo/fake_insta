@@ -1,6 +1,7 @@
 source 'https://rubygems.org'
 
 gem 'aws-sdk'
+gem 'omniauth-facebook'
 
 # 환경변수 관리
 gem 'figaro'
