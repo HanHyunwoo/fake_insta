@@ -3,7 +3,7 @@ class User < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable,
-         :comniauthable, comiauth_providers: [:facebook ]
+         :omniauthable, omniauth_providers: [:facebook ]
   has_many :posts
   has_many :likes
   has_many :liked_posts, through: :likes, source: :post
