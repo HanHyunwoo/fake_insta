@@ -8,6 +8,12 @@ Rails.application.routes.draw do
     omniauth_callbacks: 'users/omniauth_callbacks'
   }
 
+  devise_scope :user do
+     #get 'users/info' => 'users/registrations#info', via: (:get, :patch)
+     match 'users/info' => 'users/registrations#info', via: [:get, :patch]
+
+  end
+
   root 'posts#index'
   resources :posts
   post '/posts/:post_id/comments' => 'comments#create'

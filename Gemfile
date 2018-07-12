@@ -2,6 +2,12 @@ source 'https://rubygems.org'
 
 gem 'aws-sdk'
 gem 'omniauth-facebook'
+gem 'omniauth-kakao', :git => 'https://github.com/hcn1519/omniauth-kakao'
+
+
+gem 'rails-i18n', '~> 4.0' # For 4.0.x
+gem 'devise-i18n'
+
 
 # 환경변수 관리
 gem 'figaro'

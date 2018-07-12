@@ -3,7 +3,7 @@ class User < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable,
-         :omniauthable, omniauth_providers: [:facebook]
+         :omniauthable, omniauth_providers: [:facebook, :kakao]
   has_many :posts
   has_many :likes
   has_many :liked_posts, through: :likes, source: :post
@@ -21,14 +21,23 @@ class User < ActiveRecord::Base
     # user가 있는지?
 
         if user.nil?
-          user = User.find_by(email: auth.info.email)
-          if user.nil?
-          user = User.new(
-            email: auth.info.email,
-            name: auth.info.name,
-            password: Devise.friendly_token[0,20],
-            profile_img: auth.info.image
-          )
+            if auth.provider == 'kakao'
+              user = User.new(
+                name: auth.info.name,
+                password: Devise.friendly_token[0,20],
+                profile_img: auth.info.image
+              )
+            else
+
+              user = User.find_by(email: auth.info.email)
+              if user.nil?
+              user = User.new(
+                email: auth.info.email,
+                name: auth.info.name,
+                password: Devise.friendly_token[0,20],
+                profile_img: auth.info.image
+              )
+            end
           end
           user.save!
         end
@@ -43,5 +52,11 @@ class User < ActiveRecord::Base
 
 
   end
+
+
+  def email_required?
+    false
+  end
+
 
 end
